@@ -1,0 +1,102 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+<body>
+
+    <div class="container" style="max-width: 700px;">
+        <div class="text-center"> 
+           <div class="row text-center text-primary mt-3"><h3>Contact Us</h3></div> 
+            <p><i class="fas fa-home me-3"></i> Bhopal, MP</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            contact@sabjiwaala.in
+          </p>
+          <p><i class="fas fa-phone me-3"></i> <b> +91 95848 15631 </b> </p>
+          <p><i class="fas fa-print me-3"></i> <b> +91 89896 11846</b> </p>
+          <p><i class="fas fa-print me-3"></i> <b> +91 913159 2674</b> </p>
+        </div>
+
+</div>
+            <!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted mt-5">
+    <!-- Section: Social media -->
+    <section
+      class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom " style="background-color: honeydew;"
+    >
+      <!-- <div>
+        <a href="" class="me-4 text-reset"><img src="./img/assets/icons8-facebook-32.png" alt=""></a>
+        <a href="" class="me-4 text-reset"><img src="./img/assets/icons8-instagram-32.png" alt=""></a>
+        <a href="" class=" text-reset"><img src="./img/assets/icons8-twitter-32.png" alt=""></a>
+      </div> -->
+      <!-- Right -->
+    </section>
+    <!-- Section: Social media -->
+  
+    <!-- Section: Links  -->
+    <section class="">
+      <div class="container text-center text-md-start mt-5">
+        <!-- Grid row -->
+        <div class="row mt-3">
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+            <!-- Content -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              <i class="fas fa-gem me-3"></i>Sabji wala
+            </h6>
+            <p>
+              We are the new way of shopping fresh vegetables and fruits at Sabjiwaala.in To provide fresh products with high hygiene standards. And we also provide door to door free delivery service in all over Bhopal on the same day's order. Customer satisfaction is our primary objective.
+            </p>
+          </div>
+        
+  
+          <!-- Grid column -->
+          <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+        
+            </h6>
+            <p>
+              <a href="/" class="text-reset">Shop</a>
+            </p>
+            <p>
+              <a href="{% url 'main:about' %}" class="text-reset">About Us</a>
+            </p>
+            <p>
+              <a href="{% url 'main:contact' %}" class="text-reset">Contact Us</a>
+            </p>
+          
+          </div>
+          <!-- Grid column -->
+  
+          <!-- Grid column -->
+          <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+            <!-- Links -->
+            <h6 class="text-uppercase fw-bold mb-4">
+              Contact
+            </h6>
+            <p><i class="fas fa-home me-3"></i> Bhopal, MP</p>
+            <p>
+              <i class="fas fa-envelope me-3"></i>
+              contact@sabjiwaala.in
+            </p>
+            <p><i class="fas fa-phone me-3"></i> +91 95848 15631</p>
+            <p><i class="fas fa-print me-3"></i> +91 89896 11846</p>
+            <p><i class="fas fa-print me-3"></i> +91 913159 2674</p>
+          </div>
+          <!-- Grid column -->
+        </div>
+        <!-- Grid row -->
+      </div>
+    </section>
+    <!-- Section: Links  -->
+  
+    <!-- Copyright -->
+    <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+      © 2021 Copyright:Sabjiwaala.in
+      <a class="text-reset fw-bold" href="https://mdbootstrap.com/"></a>
+    </div>
+    <!-- Copyright -->
+  </footer>
+  <!-- Footer -->
+</body>
+{% endblock %}

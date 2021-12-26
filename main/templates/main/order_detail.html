@@ -1,0 +1,100 @@
+{% extends 'main/main.html' %}
+{% block content %}
+{% load static %}
+
+
+<br>
+
+
+<form method="POST">
+  <div>
+    {{form}}
+    <input class="btn-secondary" type="submit" value="Submit">
+  </div>
+</form>
+<div>
+  <a  class="btn btn-outline-dark" href="{% url 'main:orders' %}">&#x2190; Back To Orders</a>
+  <a  class="btn btn-outline-dark" href="{% url 'main:dashboard' %}">&#x2190; Back To Dashboard</a>
+</div>
+<div class="container-fluid p-3">
+  <div class="text-center mb-3">
+    <h1>Order Details</h1>
+  </div>
+  <h4>Customer Details</h4>
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col"></th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row"></th>
+        <td>{{order.customer.name}}</td>
+        <td>{{order.customer.phone}}</td>
+        <td><a href="{%url 'main:customer_orders' order.customer.id %}" class="btn   btn-secondary  rounded-pill d-block">Check Customer </a></td>
+      </tr>
+
+    </tbody>
+  </table>
+
+
+
+  <h4>Adress Details</h4>
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">House</th>
+        <th scope="col">Street</th>
+        <th scope="col">Area</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for address in addresses %}
+      <tr>
+        <td>{{address.house_no}}</td>
+        <td>{{address.street}}</td>
+        <td>{{address.area}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+  <h4 class="mt-5">Order Details</h4>
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Price</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Subtotal</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in items %}
+      <tr>
+        <td>{{item.product.name}}</td>
+        <td>{{item.product.shop_price}}₹</td>
+        <td>{{item.quantity}}KG</td>
+        <td>{{item.get_total}}</td>
+
+      </tr>
+      {% endfor %}
+
+      <tr>
+        <th scope="row"></th>
+        <td></td>
+        <td></td>
+        <td><h5>{{order.get_cart_total}}₹</h5></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+{%endblock%}

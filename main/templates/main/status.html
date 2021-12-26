@@ -1,0 +1,65 @@
+
+<style>
+
+        a {
+        text-decoration: none;
+        color: white;
+        }
+
+        a:hover {
+        color: #e2e2e2;
+        text-decoration: none;
+        cursor: pointer;
+        }
+        #total-orders{
+            background-color: #001087
+        }
+
+        #orders-delivered{
+            background-color: #001087
+        }
+
+        #orders-pending{
+            background-color: #001087
+        }
+</style>
+<br>
+<div class="row">
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="total-orders">
+                <div class="card-header">
+                    <a href="/orders/?status=Out+For+Delivery"><h5 class="card-title">Out For Delivery</h5></a>
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{ofd}} </h3>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-delivered">
+                <div class="card-header">
+                   <a href="/orders/?status=Delievred"><h5 class="card-title">Delivered Orders</h5></a> 
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{delivered}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="col-md">
+            <div class="card text-center text-white mb-3" id="orders-pending">
+                <div class="card-header">
+                    <a href="/orders/?status=Pending"><h5 class="card-title">Pending Orders</h5></a> 
+                </div>
+                <div class="card-body">
+                    <h3 class="card-title">{{pending}}</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,220 @@
+{% extends 'main/main.html' %}
+{% block content %}
+{% load static %}
+
+<body>
+  <div class="banner  d-flex align-items-center justify-content-center border-box"
+    style=" height: 400px;  box-shadow: inset 0 0 30px #000000;">
+
+    <div class=" z-1030 position-absolute p-5  rounded-3 text-center mx-2"
+      style=" background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px)">
+      <img src="{% static 'images/assets/delivery_boy.png' %}" class="deliveryboy mb-3" alt=""
+        style="height: 6rem; transform: translateX(-20%);">
+
+      <h1 class="text-primary"> Welcome to Sabjiwaala </h1>
+      <p class="text-white">Fresh Sabji , Free Delivery, Anywhere in Bhopal</p>
+      <style>
+        @keyframes float {
+          0% {
+
+            transform: translatey(0px);
+          }
+
+          50% {
+
+            transform: translatey(-20px);
+          }
+
+          100% {
+
+            transform: translatey(0px);
+          }
+        }
+
+        .deliveryboy {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .banner {
+          background-image: url("{% static 'images/slides/slide1.jpg' %}");
+          background-repeat: no-repeat;
+          background-size: cover;
+          background-clip: border-box;
+          background-position: center;
+        }
+      </style>
+    </div>
+
+  </div>
+
+
+  <div class="container" style="max-width: 1000px;">
+
+    <div class="row text-center  mt-4 ">
+      <h3>Vegetables</h3>
+    </div>
+    <div class="row mb-5 ">
+      {% for product in products %}
+      <div class="col-6 col-sm-6 col-md-4 col-lg-4 mt-3">
+        
+        <div class="container   rounded-3  p-0 " style="border: solid; border-color: rgb(219, 219, 219); border-width: 1px;">
+          
+          <img src="{{product.pic.url}}" class="card-img-top rounded-3" alt="...">
+          <div class="card-body p-2">
+            <p class="card-title" style="font-size: large;"><b>{{product.name}}</b></p>
+
+
+            <div class="row  mb-2  ">
+              <div class="col-12 text-end ">
+                <p class="card-text text-decoration-line-through " style="color: gray; font-size: small;">{{product.market_price}}/kg</p>
+              </div>
+
+              <div class="col-4 ">
+                <p class="card-text" style="color: gray; font-size: small; "><span class="align-bottom">Price</span>
+                </p>
+
+              </div>
+              <div class="col-8 text-end ">
+                <p class="card-text" style="color: #F36621; font-size: x-large;"><b>{{product.shop_price}} <span
+                      style="font-size: small;">/kg</span></b></p>
+              </div>
+
+            </div>
+
+            <div>
+              <!-- <button data-product={{product.id}} data-action="add" class="btn btn-primary rounded-pill d-block update-cart" > ADD </button> -->
+              <button data-product={{product.id}} data-action="add"
+                  class="btn btn-primary rounded-pill w-100 update-cart " id="addbtn"><b>ADD</b> 
+              </button>
+              <!-- <button data-product={{product.id}} data-action="remove"
+              class="btn btn-danger rounded-pill w-100 update-cart " id="addbtn"><b>REMOVE</b> 
+          </button> -->
+          </div>
+            <!-- <a  class="btn   btn-outline-secondary  rounded-pill d-block d-none" id="removebtn" ><b>REMOVE</b> </a> -->
+
+
+
+
+
+          </div>
+
+
+          
+        </div>
+        
+      </div>
+      {% endfor %}
+    </div>
+     
+
+  </div>
+
+
+
+
+
+
+  </div>
+</body>
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-light text-muted mt-5">
+  <!-- Section: Social media -->
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom "
+    style="background-color: honeydew;">
+    <!-- Left -->
+    <!-- <div class="me-5 d-none d-lg-block">
+      <span style="color: #28a745;">Get connected with us on social networks:</span>
+    </div> -->
+    <!-- Left -->
+
+    <!-- Right -->
+      <!-- <div>
+        <a href="" class="me-4 text-reset"><img src="./img/assets/icons8-facebook-32.png" alt=""></a>
+        <a href="" class="me-4 text-reset"><img src="./img/assets/icons8-instagram-32.png" alt=""></a>
+        <a href="" class=" text-reset"><img src="./img/assets/icons8-twitter-32.png" alt=""></a>
+      </div> -->
+    <!-- Right -->
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>Sabji wala
+          </h6>
+          <p>
+            We are the new way of shopping fresh vegetables and fruits at Sabjiwaala.in To provide fresh products with high hygiene standards. And we also provide door to door free delivery service in all over Bhopal on the same day's order. Customer satisfaction is our primary objective.
+          </p>
+        </div>
+
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+      
+          </h6>
+          <p>
+            <a href="/" class="text-reset">Shop</a>
+          </p>
+          <p>
+            <a href="{% url 'main:about' %}" class="text-reset">About Us</a>
+          </p>
+          <p>
+            <a href="{% url 'main:contact' %}" class="text-reset">Contact Us</a>
+          </p>
+        
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> Bhopal, MP</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            contact@sabjiwaala.in
+          </p>
+          <p><i class="fas fa-phone me-3"></i> +91 95848 15631</p>
+          <p><i class="fas fa-print me-3"></i> +91 89896 11846</p>
+          <p><i class="fas fa-print me-3"></i> +91 913159 2674</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:Sabjiwaala.in
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/"></a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+
+<!-- <script>
+  var updateBtns;
+  updateBtns = document.getElementsByClassName('update-cart');
+  for(var i=0; i < updateBtns.length;i++){
+    updateBtns[i].addEventListener('click',function(){
+      var add;
+      var remove;
+      add = this.style.display = "none";
+      remove = this.remove.display = "nonen"
+    })
+  }
+</script> -->
+{% endblock %}

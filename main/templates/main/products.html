@@ -1,0 +1,58 @@
+{% extends 'main/main.html' %}
+{% block content %}
+{% load static %}
+
+
+<br>
+<br>
+<div class="row">
+  <div class="col">
+      <div class="card card-body">
+          <form action="" method="get">
+              {{filter.form}}
+              <button class="btn btn-primary" type="submit">Search</button>
+          </form>
+      </div>
+  </div>
+</div>
+<div class="row">
+  <a  class="btn btn-outline-dark" href="{% url 'main:product_create' %}">Add New Product</a>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="col-md3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Item</th>
+            <th scope="col"> Our Price</th>
+            <th scope="col"> Market Price </th>
+            <th scope="col">
+              <i class="bi-pencil" style="color: cornflowerblue;"></i>
+            </th>
+            <th scope="col">
+              <i class="bi-trash" style="color: cornflowerblue;"></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for product in products %}
+          <tr>
+            <td scope="row"> {{product.name}} </td>
+            <td scope="row">{{product.shop_price}}₹</td>
+            <td scope="row">{{product.market_price}}₹</td>
+            <td> <a href="{% url 'main:product_update' product.id %}"><i class="bi-pencil" style="color: cornflowerblue;"></i> </a></td>
+            <td> <a href="{% url 'main:product_delete' product.id %}"><i class="bi-trash" style="color: cornflowerblue;"></i> </a></td>
+          </tr>
+          {% endfor %}
+        <tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}

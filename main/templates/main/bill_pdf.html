@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{order.transaction_id}}</title>
+</head>
+
+<body>
+  <div class="row">
+      <div class="col-md-4">
+          
+      </div>
+      <div class="col-md-4">
+          <div>
+            {% load static %}
+              <img src="{% static 'images/logo/logo.png' %}" alt="">
+          </div>
+      </div>
+      <div class="col-md-4">
+          
+      </div>
+</div>
+  <div>
+      <h4> Thank you for shopping with SabjiWaala.in </h4>
+  </div>
+  <div>
+      <p>OrderID: <b>{{order.transaction_id}}</b> </p>
+      <p>Date <b>{{order.date_created | date:'d/m/Y' }}</b> </p>
+  </div>
+  <table>
+      <tbody>
+          <tr>
+              <td><b>Billing</b></td>
+              <td></td>
+          </tr>
+      </tbody>
+      <tbody>
+          <tr>
+              <td><b>Items</b></td>
+              <td><b>Price</b></td>
+              <td><b>Quantity</b></td>
+              <td><b>Amount</b></td>
+          </tr>
+          <tr>
+              {% for item in items %}
+              <td>{{item.product.name}}</td>
+              <td>{{item.product.shop_price}}Rs</td>
+              <td>{{item.quantity}}KG</td>
+              <td>{{item.get_total}}</td>
+          </tr>
+          {% endfor %}
+          <tr>
+              <th></th>
+              <th></th>
+              <th></th>
+              <br>
+              <td>
+                  <h5>Total: {{order.get_cart_total}} Rs</h5>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+</body>
+
+</html>

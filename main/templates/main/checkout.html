@@ -1,0 +1,127 @@
+{% extends 'main/main.html' %}
+{% load static %}
+{% block content %}
+
+
+
+
+<div class="container" style="max-width: 600px;">
+
+  <div class="row text-center text-primary mt-3">
+    <h3>Checkout</h3>
+  </div>
+  <form id="form">
+    Contact Details
+    <div class="user-info">
+      <input required class="form-control mt-3 mb-3" id="n" type="text" name="name" placeholder="Name" aria-label="Name"
+        aria-describedby="basic-addon1">
+      <input required class="form-control mt-3 mb-3" id="num" type="text" name="number" placeholder="Phone Number"
+        aria-label="Name" aria-describedby="basic-addon1">
+    </div>
+
+    Address
+    <div class="shipping-info">
+      <input required class="form-control mt-3 mb-3" type="text" name="area" placeholder="Area" aria-label="Name"
+        aria-describedby="basic-addon1">
+      <input required class="form-control mt-3 mb-3" type="text" name="street" placeholder="Street" aria-label="Name"
+        aria-describedby="basic-addon1">
+      <input required class="form-control mt-3 mb-3" type="text" name="houseno" placeholder="House No."
+        aria-label="Name" aria-describedby="basic-addon1">
+    </div>
+
+
+
+    <div class="d-flex justify-content-center mt-5">
+      <button id="form-button" class="btn   btn-primary  rounded-pill d-block" type="submit"
+        style="padding-left: 5rem; padding-right: 5rem;"><b>SUBMIT</b> </button>
+    </div>
+  </form>
+</div>
+
+<br>
+<br>
+
+
+
+
+
+<script type="text/javascript">
+  let shipping = true;
+  let info = true;
+  var total = '{{ order.get_cart_total }}';
+  var form = document.getElementById('form');
+
+
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    console.log('Form Submitted');
+  })
+
+  document.getElementById('form-button').addEventListener('click', function (e) {
+
+    var name;
+    var phone;
+    name = document.getElementById('n').value;
+    phone = document.getElementById('num').value;
+    if (name == "" || phone == "") {
+      console.log('no name or phone was added');
+    } else {
+      submitFormData();
+    }
+  }
+  )
+
+  function submitFormData() {
+    // console.log('Confrim clicked')
+
+    var userFormData = {
+      'name': null,
+      'number': null,
+      'total': total,
+    }
+
+    var shippingInfo = {
+      'area': null,
+      'street': null,
+      'houseno': null,
+    }
+
+    if (shipping = true) {
+      shippingInfo.area = form.area.value;
+      shippingInfo.street = form.street.value;
+      shippingInfo.houseno = form.houseno.value;
+    }
+
+    if (info = true) {
+      userFormData.name = form.name.value;
+      userFormData.number = form.number.value;
+    }
+
+    var url = '/process_order/'
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-CSRFToken': csrftoken,
+      },
+      body: JSON.stringify({ 'form': userFormData, 'shipping': shippingInfo })
+    })
+
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Success', data);
+        // alert('data was sent');
+
+        cart = {}
+        document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+        window.location.href = "{% url 'main:done'%}"
+      })
+
+
+
+  }
+
+</script>
+{% endblock %}

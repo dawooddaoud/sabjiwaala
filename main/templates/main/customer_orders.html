@@ -1,0 +1,97 @@
+{% extends 'main/main.html' %}
+{% block content %}
+{% load static %}
+
+<br>
+<div class="text-center mb-3"> <h1>{{ customer.name }} Orders</h1>  </div>
+<style>
+
+  a {
+  text-decoration: none;
+  color: white;
+  }
+
+  a:hover {
+  color: #e2e2e2;
+  text-decoration: none;
+  cursor: pointer;
+  }
+  #total-orders{
+      background-color: #001087
+  }
+
+  #orders-delivered{
+      background-color: #001087
+  }
+
+  #orders-pending{
+      background-color: #001087
+  }
+</style>
+<br>
+<div class="row">
+<div class="col">
+  <div class="col-md">
+      <div class="card text-center text-white mb-3" id="total-orders">
+          <div class="card-header">
+              <a href="/orders/?status=Out+For+Delivery"><h5 class="card-title">Out For Delivery</h5></a>
+          </div>
+          <div class="card-body">
+              <h3 class="card-title">{{ofd}} </h3>
+          </div>
+      </div>
+
+  </div>
+</div>
+<div class="col">
+  <div class="col-md">
+      <div class="card text-center text-white mb-3" id="orders-delivered">
+          <div class="card-header">
+             <a href="/orders/?status=Delievred"><h5 class="card-title">Delivered Orders</h5></a> 
+          </div>
+          <div class="card-body">
+              <h3 class="card-title">{{delivered}}</h3>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="col">
+  <div class="col-md">
+      <div class="card text-center text-white mb-3" id="orders-pending">
+          <div class="card-header">
+              <a href="/orders/?status=Pending"><h5 class="card-title">Pending Orders</h5></a> 
+          </div>
+          <div class="card-body">
+              <h3 class="card-title">{{pending}}</h3>
+          </div>
+      </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid p-3">
+    <table class="table align-middle">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Time/Date</th>
+            <th scope="col">Transaction ID</th>
+            <th scope="col">Status</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for order in orders %}
+          <tr>
+            <th scope="row"></th>
+            <td>{{order.date_created}}</td>
+            <td>{{order.transaction_id}}</td>
+            <td class="text-danger"><b>{{ order.status }}</b></td>
+            <td><a href="{%url 'main:order_items' order.id %}" class="btn   btn-secondary  rounded-pill d-block">Check Order </a></td>
+          </tr>
+            {% endfor %}
+        </tbody>
+      </table>
+
+  </div>
+
+{% endblock %}

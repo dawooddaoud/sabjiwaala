@@ -1,0 +1,66 @@
+{% extends 'main/main.html' %}
+{% block content %}
+{% load static %}
+
+
+
+<br>
+<div class="container-fluid p-3">
+  <div class="text-center mb-3">
+    <h1>Orders</h1>
+  </div>
+  <div class="row">
+    <div class="col">
+      <div class="card card-body">
+        <form action="" method="get">
+          {{filter.form}}
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <table class="table align-middle">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Time/Date</th>
+        <th scope="col">Transaction ID</th>
+        <th scope="col">Status</th>
+        <th scope="col"></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders_page %}
+      <tr>
+        <td>{{order.customer.name}}</td>
+        <td>{{order.date_created}}</td>
+        <td>{{order.transaction_id}}</td>
+        <td class="text-danger"><b>{{ order.status }}</b></td>
+        <td><a href="{%url 'main:order_items' order.id %}" class="btn btn-info rounded-pill d-block">Check Order</a></td>
+        <td><a href="{%url 'main:pdf' order.id %}" class="btn btn-danger rounded-pill d-block">Download PDF</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="d-flex justify-content-center m-3">
+
+    <nav aria-label="Page navigation example">
+      <ul class="pagination">
+        {%if orders_page.has_previous%}
+        <li class="page-item"><a class="page-link" href="?page={{ orders_page.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <li class="page-item"><a class="page-link" href="#">{{ orders_page.number }}</a></li>
+        <!-- <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li> -->
+        {%if orders_page.has_next%}
+        <li class="page-item"><a class="page-link" href="?page={{ orders_page.next_page_number }}">Next</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+
+  </div>
+
+</div>
+
+{% endblock %}

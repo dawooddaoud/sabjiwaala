@@ -1,0 +1,51 @@
+{% extends 'main/main.html' %}
+{% block content %}
+{% load static %}
+
+
+<br>
+<br>
+<br>
+<br>
+
+<div class="row">
+  <div class="col">
+    <div class="card card-body">
+      <form action="" method="get">
+        {{filter.form}}
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="col-md3">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col"> Phone </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for customer in customers %}
+          <tr>
+            <td scope="row"> {{customer.name}} </td>
+            <td scope="row">{{customer.phone}}</td>
+            <td><a href="{%url 'main:customer_orders' customer.id %}"
+                class="btn   btn-secondary  rounded-pill d-block">View Orders </a></td>
+          </tr>
+          {% endfor %}
+        <tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+{% endblock %}
