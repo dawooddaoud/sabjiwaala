@@ -36,7 +36,7 @@ class Product(models.Model):
     shop_price = models.FloatField(null=True)
     category = models.CharField(max_length=200, null=True, choices=CATEGORY)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
-    pic = models.ImageField(default = 'default.png', null=True,blank=True)
+    pic = models.ImageField(upload_to='products',default = 'default.png', null=True,blank=True)
     tag = models.ManyToManyField(Tag,blank=True)
     visibilty = models.BooleanField(default=True,blank=True,null=True)
     class Meta:
